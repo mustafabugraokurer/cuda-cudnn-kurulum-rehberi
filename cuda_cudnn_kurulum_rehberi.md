@@ -3,7 +3,68 @@
 Bu doküman, NVIDIA ekran kartı kullanan geliştiriciler ve yapay zeka projeleriyle uğraşanlar için **CUDA Toolkit** ve **cuDNN** kurulumunu adım adım, temiz ve doğru şekilde nasıl yapacaklarını açıklar. Bu rehber, özellikle PyTorch / YOLO / OpenCV gibi kütüphaneleri GPU ile kullanmak isteyenlere yöneliktir.
 
 ---
+## 🧼 🔄 CUDA + cuDNN Tam Temiz Kurulum (Önerilen)
 
+
+Bu bölümde, bilgisayarında daha önce kurulu olan CUDA, cuDNN, NVIDIA sürücüleri gibi bileşenleri tamamen temizleyip sıfırdan sağlam bir kurulum yapmak isteyen kullanıcılar için tüm adımlar detaylı şekilde anlatılmıştır.
+
+### 🧼 1. Eski NVIDIA Yazılımlarını Kaldır
+1.1 Denetim Masasından kaldırılacaklar:
+Git → Denetim Masası > Programlar > Programlar ve Özellikler
+
+Aşağıdakileri sırayla kaldır:
+
+NVIDIA Graphics Driver
+
+NVIDIA CUDA Toolkit
+
+NVIDIA PhysX System Software
+
+NVIDIA GeForce Experience (isteğe bağlı)
+
+NVIDIA Nsight bileşenleri (varsa)
+
+CUDA Visual Studio Integration
+
+NVIDIA HD Audio veya FrameView SDK (varsa)
+
+✅ Her kaldırma işleminden sonra yeniden başlat gerekmiyor ama en sonunda bir kez yapılması önerilir.
+
+### 🧹 2. Sistem Dosyalarını Temizle
+2.1 Aşağıdaki klasörleri manuel olarak sil:
+
+C:\Program Files\NVIDIA Corporation
+C:\Program Files\NVIDIA GPU Computing Toolkit
+C:\ProgramData\NVIDIA Corporation
+⚠️ ProgramData gizli klasördür. Görünmüyorsa klasör ayarlarından gizli dosyaları gösterin.
+
+### 🧾 3. Ortam Değişkenlerini Temizle
+Git → Başlat > Ortam Değişkenlerini Düzenle > Sistem Özellikleri > Ortam Değişkenleri
+
+3.1 Path Değişkeni içinde:
+Aşağıdaki gibi eski CUDA yollarını silin:
+
+
+```bash
+C:\Program Files\NVIDIA Corporation
+C:\Program Files\NVIDIA GPU Computing Toolkit
+C:\ProgramData\NVIDIA Corporation
+```
+
+3.2 CUDA_PATH varsa → silin veya doğru sürüme göre güncelleyin.
+### 🧰 4. (Opsiyonel) Display Driver Uninstaller (DDU) ile Tam Temizlik
+Bazı kullanıcılar için önerilir:
+
+[Display Driver Uninstaller (DDU)](https://www.wagnardsoft.com/)
+
+
+“Safe Mode” üzerinden çalıştırılır.
+
+Tüm NVIDIA bileşenlerini kaldırır.
+
+### 🔁 5. Bilgisayarı Yeniden Başlat
+Yukarıdaki işlemler tamamlandığında sistemde eski sürümden kalan hiçbir dosya olmamalıdır.
+---
 ## ✅ Gerekli Bilgiler ve Uyum Kontrolü
 
 ### 1. Ekran Kartı Uyumluluğu
@@ -90,12 +151,6 @@ except OSError:
 
 ---
 
-## 🧼 Temiz Kurulum İçin Ekstra Adımlar
-
-- Eski klasörlerin temizlendiğinden emin olun:
-  - `C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA`
-  - `C:\Program Files\NVIDIA Corporation`
-- Ortam değişkenlerinden eski CUDA sürüm yollarını kaldır.
 
 ---
 
@@ -106,6 +161,18 @@ except OSError:
 
 ---
 
+---
 
+## 🙌 Destek Olmak İstersen
+
+Bu rehber faydalı olduysa:
+
+- ⭐️ [GitHub'ta yıldız ver](https://github.com/mustafabugraokurer/cuda-cudnn-kurulum-rehberi)
+- 🐛 Hata bulduysan [issue aç](https://github.com/mustafabugraokurer/cuda-cudnn-kurulum-rehberi/issues)
+- 📥 Katkı sunmak istersen `pull request` gönderebilirsin
+
+---
+
+Bu doküman açık kaynak olarak hazırlanmıştır. Dilediğiniz gibi dağıtabilir, güncelleyebilir veya kendi projelerinize dahil edebilirsiniz.
 
 
